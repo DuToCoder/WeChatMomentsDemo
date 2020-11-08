@@ -26,12 +26,13 @@
             android:id="@+id/iv_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="265dp"
+            android:layout_marginTop="250dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
-            imageLoader:radius="5"
+            imageLoader:radius="@{8f}"
             imageLoader:url="@{userInfo.avatar}" />
 
         <TextView

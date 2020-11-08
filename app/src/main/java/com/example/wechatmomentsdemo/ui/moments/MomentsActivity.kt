@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.wechatmomentsdemo.databinding.ActivityMomentsBinding
+import com.example.wechatmomentsdemo.extension.logD
 import com.example.wechatmomentsdemo.extension.showToast
 import com.example.wechatmomentsdemo.ui.base.BaseActivity
 import com.example.wechatmomentsdemo.utils.InjectorUtil
@@ -48,40 +51,43 @@ class MomentsActivity : BaseActivity() {
             val layoutManager = LinearLayoutManager(this)
             binding.rvMoments.layoutManager = layoutManager
             binding.rvMoments.adapter = adapter
+            (binding.rvMoments.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             binding.rvMoments.setLoadingListener(object : XRecyclerView.LoadingListener {
                 override fun onRefresh() {
                     //下拉刷新
                     lifecycleScope.launchWhenResumed {
                         delay(500)
                         adapter.currentPage = 1
+                        logD("ssss", "currentPage=" + adapter.currentPage)
                         adapter.tweetsList = it.tweetsInfo.subList(
                             0,
                             if (adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT > it.tweetsInfo.size)
                                 it.tweetsInfo.size else adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT
                         )
-                        adapter.notifyDataSetChanged()
-
+                        adapter.notifyItemRangeChanged(1, adapter.tweetsList.size + 1)
+                        binding.rvMoments.refreshComplete()
                     }
-                    binding.rvMoments.refreshComplete()
                 }
 
                 override fun onLoadMore() {
                     //上拉加载
                     if (adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT >= it.tweetsInfo.size) {
                         //没有更多内容
+                        binding.rvMoments.loadMoreComplete()
                     } else {
                         lifecycleScope.launchWhenResumed {
                             delay(500)
                             adapter.currentPage++
+                            val oldSize = adapter.tweetsList.size
                             adapter.tweetsList = it.tweetsInfo.subList(
                                 0,
                                 if (adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT > it.tweetsInfo.size)
                                     it.tweetsInfo.size else adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT
                             )
-                            adapter.notifyDataSetChanged()
+                            adapter.notifyItemRangeChanged(oldSize + 1, adapter.tweetsList.size + 1)
+                            binding.rvMoments.loadMoreComplete()
                         }
                     }
-                    binding.rvMoments.loadMoreComplete()
                 }
 
             })

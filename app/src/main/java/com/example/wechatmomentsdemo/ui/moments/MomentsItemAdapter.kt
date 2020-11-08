@@ -43,8 +43,10 @@ class MomentsItemAdapter(private val context: Context, private val userInfo: Use
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is UserViewHolder) {
+            holder.setIsRecyclable(false)
             holder.bind(userInfo)
         } else if (holder is TweetsViewHolder) {
+            holder.setIsRecyclable(false)
             holder.bind(tweetsList[position - 1])
         }
     }
@@ -92,18 +94,21 @@ class MomentsItemAdapter(private val context: Context, private val userInfo: Use
                 binding.rvTweetsImages.layoutManager = gridLayoutManager
                 val commentImageAdapter =
                     CommentImageAdapter(binding.root.context, tweetsInfo.images!!)
-                binding.rvTweetsImages.addItemDecoration(object : RecyclerView.ItemDecoration() {
-                    override fun getItemOffsets(
-                        outRect: Rect,
-                        view: View,
-                        parent: RecyclerView,
-                        state: RecyclerView.State
-                    ) {
-                        super.getItemOffsets(outRect, view, parent, state)
-                        outRect.right = dp2px(2f)
-                        outRect.bottom = dp2px(2f)
-                    }
-                })
+                val itemDecorationCount = binding.rvTweetsImages.itemDecorationCount
+                if (itemDecorationCount == 0){
+                    binding.rvTweetsImages.addItemDecoration(object : RecyclerView.ItemDecoration() {
+                        override fun getItemOffsets(
+                            outRect: Rect,
+                            view: View,
+                            parent: RecyclerView,
+                            state: RecyclerView.State
+                        ) {
+                            super.getItemOffsets(outRect, view, parent, state)
+                            outRect.right = dp2px(3f)
+                            outRect.bottom = dp2px(3f)
+                        }
+                    })
+                }
                 binding.rvTweetsImages.adapter = commentImageAdapter
             }
 

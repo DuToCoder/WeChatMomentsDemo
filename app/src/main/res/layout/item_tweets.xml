@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils"/>
 
         <variable
             name="item"
@@ -17,15 +19,15 @@
 
         <ImageView
             android:id="@+id/iv_sender_avatar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            imageLoader:radius="3"
+            imageLoader:radius="@{5f}"
             imageLoader:url="@{item.sender.avatar}" />
 
         <TextView
@@ -48,6 +50,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
+            android:visibility="@{!TextUtils.isEmpty(item.content)?View.VISIBLE:View.GONE}"
             android:text="@{item.content}"
             android:textColor="@color/color_000000"
             android:textSize="15sp"

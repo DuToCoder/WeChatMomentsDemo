@@ -5,6 +5,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.wechatmomentsdemo.R
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 
@@ -21,7 +22,7 @@ fun ImageView.load(
     cornerType: RoundedCornersTransformation.CornerType = RoundedCornersTransformation.CornerType.ALL
 ) {
     if (round == 0f) {
-        Glide.with(this.context).load(url).into(this)
+        Glide.with(this.context).load(url).placeholder(R.mipmap.def_img).into(this)
     } else {
         val option = RequestOptions.bitmapTransform(
             RoundedCornersTransformation(
@@ -29,7 +30,7 @@ fun ImageView.load(
                 0,
                 cornerType
             )
-        )
+        ).placeholder(R.mipmap.def_img)
         Glide.with(this.context).load(url).apply(option).into(this)
     }
 }
