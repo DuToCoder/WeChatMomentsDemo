@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:imageLoader="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.wechatmomentsdemo.logic.model.TweetsInfoBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_sender_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            imageLoader:radius="3"
+            imageLoader:url="@{item.sender.avatar}" />
+
+        <TextView
+            android:id="@+id/tv_sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="@{item.sender.nick}"
+            android:textColor="@color/color_128bd5"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_sender_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_sender_avatar"
+            tools:text="Joe Portman" />
+
+        <TextView
+            android:id="@+id/tv_tweets_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@{item.content}"
+            android:textColor="@color/color_000000"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_sender_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sender_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tweets_images"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintStart_toStartOf="@+id/tv_sender_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tweets_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tweets_comment"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_66ffffff_3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_sender_name"
+            app:layout_constraintTop_toBottomOf="@+id/rv_tweets_images"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

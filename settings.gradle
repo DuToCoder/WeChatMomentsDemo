@@ -1,0 +1,3 @@
+include ':xrecyclerview'
+include ':app'
+rootProject.name = "WeChatMomentsDemo"
