@@ -58,13 +58,34 @@ class MomentsActivity : BaseActivity() {
                     lifecycleScope.launchWhenResumed {
                         delay(500)
                         adapter.currentPage = 1
-                        logD("ssss", "currentPage=" + adapter.currentPage)
-                        adapter.tweetsList = it.tweetsInfo.subList(
+
+                        val newList =  it.tweetsInfo.subList(
                             0,
                             if (adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT > it.tweetsInfo.size)
                                 it.tweetsInfo.size else adapter.currentPage * MomentsItemAdapter.PER_PAGE_COUNT
                         )
-                        adapter.notifyItemRangeChanged(1, adapter.tweetsList.size + 1)
+
+                        val calculateDiff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+                            override fun getOldListSize(): Int {
+                                return adapter.tweetsList.size
+                            }
+
+                            override fun getNewListSize(): Int {
+                                return newList.size
+                            }
+
+                            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                                return newList[newItemPosition] == adapter.tweetsList[oldItemPosition]
+                            }
+
+                            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                                return newList[newItemPosition] == adapter.tweetsList[oldItemPosition]
+                            }
+
+                        })
+                        calculateDiff.dispatchUpdatesTo(adapter)
+                        adapter.tweetsList = newList
+
                         binding.rvMoments.refreshComplete()
                     }
                 }
