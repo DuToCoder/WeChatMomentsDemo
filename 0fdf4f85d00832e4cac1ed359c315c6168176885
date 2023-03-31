@@ -39,6 +39,30 @@
       },
       "revId": "0fdf4f85d00832e4cac1ed359c315c6168176885",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9204db_39b4c8d3",
+        "filename": "app/src/main/java/com/example/wechatmomentsdemo/ui/moments/MomentsViewModelFactory.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1020992
+      },
+      "writtenOn": "2023-03-31T06:43:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b45b4a07_9ca96834",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "0fdf4f85d00832e4cac1ed359c315c6168176885",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
