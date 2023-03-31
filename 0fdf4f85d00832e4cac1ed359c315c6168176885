@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f01c2b_00369767",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1020992
+      },
+      "writtenOn": "2023-03-31T06:07:04Z",
+      "side": 1,
+      "message": "需要修改",
+      "revId": "0fdf4f85d00832e4cac1ed359c315c6168176885",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b45b4a07_9ca96834",
+        "filename": "app/src/main/java/com/example/wechatmomentsdemo/ui/moments/MomentsViewModelFactory.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1020992
+      },
+      "writtenOn": "2023-03-31T06:07:04Z",
+      "side": 1,
+      "message": "可以不用修改",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "0fdf4f85d00832e4cac1ed359c315c6168176885",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
