@@ -118,5 +118,6 @@ class MomentsActivity : BaseActivity() {
 
     private fun initData() {
         viewModel.getInfo()
+        logD("http_request", "getInfo")
     }
 }
