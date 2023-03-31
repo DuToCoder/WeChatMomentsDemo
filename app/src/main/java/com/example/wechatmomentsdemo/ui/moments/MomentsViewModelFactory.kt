@@ -10,7 +10,7 @@ import com.example.wechatmomentsdemo.logic.MyRepository
 class MomentsViewModelFactory(private val repository:MyRepository):
     ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MomentsViewModel(repository) as T
     }
 }
