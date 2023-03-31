@@ -36,6 +36,7 @@ class MomentsActivity : BaseActivity() {
     private fun setupViews() {
         binding.lifecycleOwner = this
         observe()
+        logD("http_request", "setupViews")
     }
 
     private fun observe() {
